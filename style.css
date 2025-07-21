@@ -35,6 +35,9 @@ body{
  
    backface-visibility: hidden;
 }
+/* .front-face{
+  transform: rotateY(180deg);
+} */
 .back-img{
   transform: rotateY(180deg);
 }
@@ -53,7 +56,7 @@ body{
   transition:transform 0.2s;
 }
 .card.flip{
-  transform: rotate(180deg);
+  transform: rotateY(180deg);
 }
 .otherinfo{
   background-color: aqua;

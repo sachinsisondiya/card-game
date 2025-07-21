@@ -26,22 +26,36 @@ function flipCard(){
   lockboard=true;
 }
 function checkForMatch(){
-  let match= firstCard.dataset.framework === secondCard.dataset.framework;
-  match ? disabledCards() : unflipCards();
+  let match= firstCard.dataset.framework === secondCard.dataset.framework
+  if(match){
+    disabledCards()
+  }
+  else{
+    unflipCards();
+  }
+  checkForWin()
 }
 
 function disabledCards(){
   firstCard.removeEventListener('click',flipCard)
   secondCard.removeEventListener('click',flipCard)
+  resetBoard() 
 }
 
 function unflipCards(){
   setTimeout(function (){
     firstCard.classList.remove('flip');
     secondCard.classList.remove('flip')
+    resetBoard()
   },1500);
+ 
 }
-
+function resetBoard(){
+  hasFlipedCard=false;
+  lockboard=false;
+  firstCard=null;
+  secondCard=null;
+}
 function shuffleCards(){
   for(let i=0;i<allCards.length;i++){
     let suffle = Math.floor(Math.random()*16);
@@ -61,7 +75,7 @@ function resetGame(){
    shuffleCards()
    stopTimer()
    seconds = 0
-   stertTimer()
+   startTimer()
    document.getElementById('resultShow').innerHTML= "";
 }
 function timeFormat(time){
@@ -90,9 +104,21 @@ function checkForWin(){
     const minutes = Math.floor((seconds%60)/60);
     const remainingSecond= seconds %60
 
-    document.getElementById('resultShow').innerHTML= `Congratulations! you won the game in ${timeFormat(hours)}:${timeFormat(minutes):${timeFormat(remainingSecond)}}`
-    
+    document.getElementById('resultShow').innerHTML= `Congratulations! you won the game in ${timeFormat(hours)}:${timeFormat(minutes)}:${timeFormat(remainingSecond)}`
+
   }
 }
 
+function startGame(){
+  startTimer()
+  shuffleCards();
+  for(let i=0;i<allCards.length;i++){
+    allCards[i].addEventListener('click',flipCard)
+  }
+  btnStartGame.remove()
+ 
+}
+
+let btnStartGame =document.getElementById('startButton');
+btnStartGame.addEventListener('click',startGame);
  
