@@ -6,21 +6,22 @@ body{
 }
 .main{
    width: 100vw;
-  height: 100vh;
+  
   
   border: 1px solid black;
   display: flex;
   flex-direction: row;
   column-gap: 5px;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
 .card-wrapper{
   border: 1px solid black;
-  margin: 5px auto;
-  width: 850px;
+  margin: 4px auto;
+  width: 750px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -28,15 +29,38 @@ body{
  
    width: 100%;
    height: 100%;
-   padding: 10px;
+   padding: 1px;
    position:absolute;
    border-radius:5px;
-   background-color: black;
+ 
    backface-visibility: hidden;
+}
+.back-img{
+  transform: rotateY(180deg);
 }
 .card{
    margin: 2px; 
   position: relative; 
-  width: 170px;
-  height: 170px; 
+  width: 150px;
+  height: 140px; 
+  transition: .5s;
+  transform-style: preserve-3d;
+  transform:scale(1);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+}
+.card:active{
+  transform:scale(0.97);
+  transition:transform 0.2s;
+}
+.card.flip{
+  transform: rotate(180deg);
+}
+.otherinfo{
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height:300px ;
+  width: 200px;
 }
