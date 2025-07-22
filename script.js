@@ -91,6 +91,8 @@ function resetGame(){
    seconds = 0
    startTimer()
    document.getElementById('resultShow').innerHTML= ""
+   moves=0;
+   countMove.innerHTML=""
 }
 function timeFormat(time){
   return time < 10 ? `0${time}`: time;  
